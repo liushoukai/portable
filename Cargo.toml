@@ -2,6 +2,7 @@
 name = "git_commit_generator"
 version = "0.1.0"
 edition = "2021"
+default-run = "git_commit_generator"
 
 [dependencies]
 tokio = { version = "1", features = ["full"] }

@@ -2,9 +2,8 @@ use std::process::Command;
 use std::env;
 use clap::Parser;
 
-// 导入模型模块
-mod model;
-use model::{Cli, ApiRequestBody, ApiResponse, Message};
+// 从共享库导入模型模块
+use git_commit_generator::model::{Cli, ApiRequestBody, ApiResponse, Message};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
