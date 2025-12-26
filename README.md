@@ -96,4 +96,12 @@ git commit -m "feat: Add AI-powered commit message generation"
 
 # Verify the commit
 git log -1 --oneline
+
+cargo build --bin git_commit_generator
+```
+
+```shell
+# 在 cargo run 命令中，需要使用 -- 来分隔 cargo 的参数和程序的参数
+cargo run --package git_commit_generator --bin git_commit_generator -- --help
+
 ```
