@@ -41,6 +41,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let api_url = env::var("AI_API_URL").expect("AI_API_URL must be set");
     let model = env::var("AI_MODEL").expect("AI_MODEL must be set");
 
+    println!("Generating commit message using model: {}", model);
+
     // 5. Construct the prompt for the AI
     let prompt = format!(
         "Please generate a conventional git commit message for the following code changes. The message should follow the standard format: a concise title (subject) line, followed by a blank line, and then a more detailed explanatory body. The body MUST NOT exceed 50 characters. Provide only the commit message text, without any introductory phrases.\n\n        Diff:\n```diff\n{}\n```",
@@ -58,7 +60,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // 7. Send HTTP POST request to the AI API
     let client = reqwest::Client::new();
-    println!("Generating commit message...");
 
     let response = client.post(&api_url)
         .bearer_auth(api_key)
