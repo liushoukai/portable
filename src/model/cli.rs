@@ -8,6 +8,6 @@ pub struct Cli {
     #[arg(short = 'a', long, default_value_t = false)]
     pub auto: bool,
     /// Timeout for AI API requests (in milliseconds)
-    #[arg(short = 't', long, default_value_t = 3000)]
+    #[arg(short = 't', long, default_value_t = 30000)]
     pub timeout: u64,
 }
