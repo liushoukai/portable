@@ -4,7 +4,7 @@ use std::time::Duration;
 use clap::Parser;
 
 // 从共享库导入模型模块
-use git_commit_generator::model::{Cli, ApiRequestBody, ApiResponse, Message};
+use portable::model::{Cli, ApiRequestBody, ApiResponse, Message};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
