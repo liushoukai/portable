@@ -1,5 +1,6 @@
 use std::process::Command;
 use std::env;
+use std::time::Duration;
 use clap::Parser;
 
 // 从共享库导入模型模块
@@ -64,6 +65,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let response = client.post(&api_url)
         .bearer_auth(api_key)
         .json(&request_body)
+        .timeout(Duration::from_millis(cli.timeout))
         .send()
         .await?;
 

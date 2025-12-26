@@ -5,6 +5,9 @@ use clap::Parser;
 #[command(author, version, about, long_about = None)]
 pub struct Cli {
     /// Automatically execute the generated git commit command.
-    #[arg(short, long, default_value_t = false)]
+    #[arg(short = 'a', long, default_value_t = false)]
     pub auto: bool,
+    /// Timeout for AI API requests (in milliseconds)
+    #[arg(short = 't', long, default_value_t = 3000)]
+    pub timeout: u64,
 }
