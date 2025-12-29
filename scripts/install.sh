@@ -40,8 +40,7 @@ for rs_file in src/bin/*.rs; do
 
     # 检查编译后的二进制文件是否存在
     if [[ -f "$src_bin" ]]; then
-        echo "  安装: $bin_name"
-        cp -fv "$src_bin" "$INSTALL_DIR/"
+        echo -n "✅ 安装: $bin_name 路径: " && cp -fv "$src_bin" "$INSTALL_DIR/"
         chmod +x "$INSTALL_DIR/$bin_name"
     else
         echo "  警告: 未找到编译后的二进制文件: $src_bin"
