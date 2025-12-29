@@ -53,11 +53,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let spinner = ProgressBar::new_spinner();
     spinner.set_style(
         ProgressStyle::default_spinner()
-            .template("{spinner:.green} {msg}")
+            .template("{spinner:.cyan} {msg}")
             .expect("Failed to set progress style")
     );
-    spinner.set_message(format!("正在使用模型 {} 生成 commit message...", model));
-    spinner.enable_steady_tick(Duration::from_millis(100));
+    spinner.set_message(format!("正在调用 AI API (模型: {})，请稍候...", model));
+    spinner.enable_steady_tick(Duration::from_millis(80));
 
     // 7. Build the request body
     let request_body = ApiRequestBody {
@@ -98,18 +98,19 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let commit_message = choice.message.content.trim();
 
-    // 成功生成，显示成功消息
-    spinner.finish_with_message("✅ Commit message 生成成功！");
+    // 成功生成，先清除 spinner，然后在新行显示成功消息
+    spinner.finish_and_clear();
+    println!("✅ Commit message 生成成功！");
 
     // 如果不是自动提交模式，直接打印命令并返回
     if !cli.auto {
-        println!("\nGenerated command:");
+        println!("\n📝 Generated Command:");
         println!("git commit -m \"{}\"", commit_message);
         return Ok(());
     }
 
     // 自动提交模式
-    println!("--auto flag detected. Automatically executing commit...");
+    println!("\n🚀 Auto mode: Executing commit...");
     let output = Command::new("git")
         .arg("commit")
         .arg("-m")

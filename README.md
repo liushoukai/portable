@@ -105,6 +105,3 @@ cargo build --bin git_commit_generator
 cargo run --package git_commit_generator --bin git_commit_generator -- --help
 
 ```
-
-
-xx
